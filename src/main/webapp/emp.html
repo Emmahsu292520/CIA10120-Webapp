@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="EmpPicture">
+		選擇員工:<select name="empno">
+			<option value="7001" selected>員工一</option>
+			<option value="7002">員工二</option>
+			<option value="7003">員工三</option>
+			<option value="7004">員工四</option>
+			<option value="7005">員工五</option>
+			<option value="7006">員工六</option>
+			<option value="700">幽靈員工</option>
+		</select>
+		<input type="submit">
+	</form>
+	
+	<form method="post" enctype="multipart/form-data" action="#">
+		文件:<input type="file" name="myfile">
+		<input type="submit">
+	</form>
+</body>
+</html>
