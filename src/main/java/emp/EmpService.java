@@ -12,15 +12,15 @@ public class EmpService {
 	}
 	
 	//新增
-	public EmpVO addEmp(Integer positionid, String empname, LocalDate hiredate, Boolean empstate, Integer empaccount, String emppassword, byte[] image) {
+	public EmpVO addEmp(Integer positionId, String empName, LocalDate hiredate, Boolean empState, Integer empAccount, String empPassword, byte[] image) {
 		
 		EmpVO empVO = new EmpVO();
-		empVO.setPositionid(positionid);
-		empVO.setEmpname(empname);
+		empVO.setPositionId(positionId);
+		empVO.setEmpName(empName);
 		empVO.setHiredate(hiredate);
-		empVO.setEmpstate(empstate);
-		empVO.setEmpaccount(empaccount);
-		empVO.setEmppassword(emppassword);
+		empVO.setEmpState(empState);
+		empVO.setEmpAccount(empAccount);
+		empVO.setEmpPassword(empPassword);
 		empVO.setImage(image);
 		
 		dao.insert(empVO);
@@ -29,16 +29,16 @@ public class EmpService {
 	
 	
 	//修改
-	public EmpVO updateEmp(Integer empno, Integer positionid, String empname, LocalDate hiredate, Boolean empstate, Integer empaccount, String emppassword, byte[] image) {
+	public EmpVO updateEmp(Integer empno, Integer positionId, String empName, LocalDate hiredate, Boolean empState, Integer empAccount, String empPassword, byte[] image) {
 		
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpno(empno);
-		empVO.setPositionid(positionid);
-		empVO.setEmpname(empname);
+		empVO.setPositionId(positionId);
+		empVO.setEmpName(empName);
 		empVO.setHiredate(hiredate);
-		empVO.setEmpstate(empstate);
-		empVO.setEmpaccount(empaccount);
-		empVO.setEmppassword(emppassword);
+		empVO.setEmpState(empState);
+		empVO.setEmpAccount(empAccount);
+		empVO.setEmpPassword(empPassword);
 		empVO.setImage(image);
 		
 		dao.update(empVO);

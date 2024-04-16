@@ -14,34 +14,35 @@
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
-}
-table {
+  }
+  table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
-th, td {
+  }
+  th, td {
     padding: 8px;
     text-align: center;
     border-bottom: 1px solid #ddd;
-}
-th {
+  }
+  th {
     background-color: #5bc0de;
     color: white;
-}
-th:not(:first-child) {
     border-left: 5px solid white;
-}
-tr:hover {background-color: #f5f5f5;}
-
-.header-with-button { 
+  }
+  th:first-child {
+    border-left: none;
+  }
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  .header-with-button { 
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-}
-
-.title-text {
+  }
+  .title-text {
     text-align: center;
     font-weight: bold;
     font-size: 24px;
@@ -49,24 +50,17 @@ tr:hover {background-color: #f5f5f5;}
     align-items: center;
     justify-content: center;
     width: 100%;
-}
-
-.title-icon {
+  }
+  .title-icon {
     margin-right: 5px;
-}
-
-.home-icon {
+  }
+  .home-icon {
     flex-grow: 0;
-    color: black; /* 修改图标颜色为黑色 */
+    color: black;
     text-decoration: none;
-    position: relative; /* 为tooltip-text定位 */
-}
-
-.home-icon:hover .tooltip-text {
-    visibility: visible;
-}
-
-.tooltip-text {
+    position: relative;
+  }
+  .tooltip-text {
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -78,16 +72,15 @@ tr:hover {background-color: #f5f5f5;}
     z-index: 1;
     bottom: 100%;
     left: 50%;
-    margin-left: -60px; /* 将tooltip-text水平居中 */
+    margin-left: -60px;
     opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.home-icon:hover .tooltip-text {
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .home-icon:hover .tooltip-text {
+    visibility: visible;
     opacity: 1;
-}
-
-.edit-button { 
+  }
+  .edit-button { 
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -95,19 +88,22 @@ tr:hover {background-color: #f5f5f5;}
     cursor: pointer;
     border-radius: 5px;
     flex-grow: 0;
-}
-
-
+  }
 </style>
 </head>
 <body>
 <form action="EmpServlet1" method="post" onsubmit="return validateForm();">
     <div class="header-with-button">
-        <!-- 更新后的房子图标和首頁文字提示 -->
-        <a href="selectpage1.jsp" class="home-icon">
-            <i class="fas fa-home"></i>
-            <span class="tooltip-text">首頁</span>
-        </a>
+        <div style="display: flex; align-items: center;">
+            <a href="selectpage1.jsp" class="home-icon">
+                <i class="fas fa-home"></i>
+                <span class="tooltip-text">首頁</span>
+            </a>
+            <a href="add.jsp" class="home-icon" style="margin-left: 20px;">
+                <i class="fas fa-user-plus"></i>
+                <span class="tooltip-text">新增員工</span>
+            </a>
+        </div>
         <span class="title-text"><i class="fas fa-user title-icon"></i>所有員工資料</span>
         <input type="submit" class="edit-button" value="修改">
         <input type="hidden" name="action" value="getOne_For_Update">
@@ -126,19 +122,18 @@ tr:hover {background-color: #f5f5f5;}
             <th>員工照片</th>
         </tr>
         <% 
-        // 使用getAll() 方法來獲取所有員工資料
-        EmpService empService =  new EmpService();
+        EmpService empService = new EmpService();
         List<EmpVO> empList = empService.getAll();
         for (EmpVO emp : empList) { %>
         <tr>
             <td><input type="radio" name="selectedEmp" value="<%= emp.getEmpno() %>"></td>
             <td><%= emp.getEmpno() %></td>
-            <td><%= emp.getPositionid() %></td>
-            <td><%= emp.getEmpname() %></td>
+            <td><%= emp.getPositionId() %></td>
+            <td><%= emp.getEmpName() %></td>
             <td><%= emp.getHiredate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) %></td>
-            <td><%= emp.getEmpstate() ? "在職" : "離職" %></td>
-            <td><%= emp.getEmpaccount() %></td>
-            <td><%= emp.getEmppassword() %></td>
+            <td><%= emp.getEmpState() ? "在職" : "離職" %></td>
+            <td><%= emp.getEmpAccount() %></td>
+            <td><%= emp.getEmpPassword() %></td>
             <td><img src="<%= emp.getImage() %>" alt="Employee Photo" width="100" height="100"></td>
         </tr>
         <% } %>
@@ -147,17 +142,14 @@ tr:hover {background-color: #f5f5f5;}
 
 <script>
 function validateForm() {
-    // 检查是否有员工被选中
     const isSelected = document.querySelector('input[name="selectedEmp"]:checked');
     if (!isSelected) {
         alert("請選擇要修改的員工");
-        return false; // 阻止表单提交
+        return false;
     }
-    return true; // 允许表单提交
+    return true;
 }
 </script>
 
-
 </body>
-
 </html>

@@ -42,16 +42,16 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 				// rs.getString(2) 是根據目前 SELECT 查詢中指定的欄位順序而取得對應的值，而不是直接對應到資料庫的欄位名稱。
 
 				Integer empno = rs.getInt(1);
-				Integer positionid = rs.getInt(2);
-				String empname = rs.getString(3);
+				Integer positionId = rs.getInt(2);
+				String empName = rs.getString(3);
 				LocalDate hiredate = rs.getObject(4, LocalDate.class); // LocalDate.class 為了確保從資料庫中擷取的日期值可以被正確轉換為 Java
 																		// 中的 LocalDate 物件。如果不指定類型，getObject 方法將返回一個通用的
 																		// Object
-				Boolean empstate = rs.getBoolean(5);
-				Integer empaccount = rs.getInt(6);
-				String emppassword = rs.getString(7);
+				Boolean empState = rs.getBoolean(5);
+				Integer empAccount = rs.getInt(6);
+				String empPassword = rs.getString(7);
 				byte[] image = rs.getBytes(8);
-				empVO = new EmpVO(empno, positionid, empname, hiredate, empstate, empaccount, emppassword, image);
+				empVO = new EmpVO(empno, positionId, empName, hiredate, empState, empAccount, empPassword, image);
 				employees.add(empVO);
 			}
 
@@ -74,12 +74,12 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 			if (rs.next()) {
 				empVO = new EmpVO();
 				empVO.setEmpno(rs.getInt(1));//rs.getInt(1);，你实际上是在请求 SELECT 语句中列出的第一列的值
-				empVO.setPositionid(rs.getInt(2));
-				empVO.setEmpname(rs.getString(3));
+				empVO.setPositionId(rs.getInt(2));
+				empVO.setEmpName(rs.getString(3));
 				empVO.setHiredate(rs.getObject(4, LocalDate.class));
-				empVO.setEmpstate(rs.getBoolean(5));
-				empVO.setEmpaccount(rs.getInt(6));
-				empVO.setEmppassword(rs.getString(7));
+				empVO.setEmpState(rs.getBoolean(5));
+				empVO.setEmpAccount(rs.getInt(6));
+				empVO.setEmpPassword(rs.getString(7));
 				empVO.setImage(rs.getBytes(8));
 			}
 		} catch (Exception e) {
@@ -94,12 +94,12 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-			ps.setInt(1, empVO.getPositionid());
-			ps.setString(2, empVO.getEmpname());
+			ps.setInt(1, empVO.getPositionId());
+			ps.setString(2, empVO.getEmpName());
 			ps.setObject(3, empVO.getHiredate());
-			ps.setBoolean(4, empVO.getEmpstate());
+			ps.setBoolean(4, empVO.getEmpState());
 			ps.	setInt(5, 1);  //先隨便給一個數 在後面修正回來
-			ps.setString(6, empVO.getEmppassword());
+			ps.setString(6, empVO.getEmpPassword());
 			ps.setBytes(7, empVO.getImage());
 			ps.executeUpdate();
 
@@ -140,12 +140,12 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 				+ "WHERE `empno` = ?;";
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setInt(1, empVO.getPositionid());
-			ps.setString(2, empVO.getEmpname());
+			ps.setInt(1, empVO.getPositionId());
+			ps.setString(2, empVO.getEmpName());
 			ps.setObject(3, empVO.getHiredate());
-			ps.setBoolean(4, empVO.getEmpstate());
-			ps.setInt(5, empVO.getEmpaccount());
-			ps.setString(6, empVO.getEmppassword());
+			ps.setBoolean(4, empVO.getEmpState());
+			ps.setInt(5, empVO.getEmpAccount());
+			ps.setString(6, empVO.getEmpPassword());
 			ps.setBytes(7, empVO.getImage());
 			ps.setInt(8, empVO.getEmpno());
 			ps.executeUpdate();
@@ -186,13 +186,13 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 	public static void main(String[] args) {
 		EmpJDBCDao dao = new EmpJDBCDao();
 
-		// 新增
+//		// 新增
 //		EmpVO empVO1 = new EmpVO();
-//		empVO1.setPositionid(1);
-//		empVO1.setEmpname("許芳慈");
+//		empVO1.setPositionId(1);
+//		empVO1.setEmpName("許芳慈");
 //		empVO1.setHiredate(LocalDate.of(2024, 4, 6));
-//		empVO1.setEmpstate(true);
-//		empVO1.setEmppassword("Password10");
+//		empVO1.setEmpState(true);
+//		empVO1.setEmpPassword("Password10");
 //		try {
 //			empVO1.setImage(getPictureByteArray("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/images/12.jpg"));
 //		} catch (IOException e) {
@@ -205,12 +205,12 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 //		//修改
 //		EmpVO empVO2 = new EmpVO();
 //
-//		empVO2.setPositionid(2);
-//		empVO2.setEmpname("許阿胖");
+//		empVO2.setPositionId(2);
+//		empVO2.setEmpName("許阿胖");
 //		empVO2.setHiredate(LocalDate.of(2024, 1, 15));
-//		empVO2.setEmpstate(false);
-//		empVO2.setEmpaccount(7050);
-//		empVO2.setEmppassword("Password1234");
+//		empVO2.setEmpState(false);
+//		empVO2.setEmpAccount(7050);
+//		empVO2.setEmpPassword("Password1234");
 //		try {
 //			empVO2.setImage(getPictureByteArray("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/images/11.jpg"));
 //		} catch (IOException e) {
@@ -224,13 +224,13 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 //		// 刪除
 //		dao.delete(7009);
 //		System.out.println("刪除成功");
-		
-		// 查詢
-		EmpVO empVO3 = dao.findByPrimaryKey(7001);
-		System.out.println(empVO3);
-		System.out.println("---------------------");
-		
-		
+//		
+//		// 查詢
+//		EmpVO empVO3 = dao.findByPrimaryKey(7001);
+//		System.out.println(empVO3);
+//		System.out.println("---------------------");
+//		
+//		
 		// 查詢多筆
 		List<EmpVO> employees = dao.getAll();
 		for (EmpVO showAllEmployee : employees) {

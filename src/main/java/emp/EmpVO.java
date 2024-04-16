@@ -5,82 +5,115 @@ import java.time.format.DateTimeFormatter;
 
 public class EmpVO {
 	private Integer empno;
-	private Integer positionid;
-	private String empname;
+	private Integer positionId;
+	private String empName;
 	private LocalDate hiredate;
-	private Boolean empstate;
-	private Integer empaccount;
-	private String emppassword;
+	private Boolean empState;
+	private Integer empAccount;
+	private String empPassword;
 	private byte[] image;
 	
+	
+	
+
 	
 	
 	public Integer getEmpno() {
 		return empno;
 	}
+
 	public void setEmpno(Integer empno) {
 		this.empno = empno;
 	}
-	public Integer getPositionid() {
-		return positionid;
+
+	public Integer getPositionId() {
+		return positionId;
 	}
-	public void setPositionid(Integer positionid) {
-		this.positionid = positionid;
+
+	public void setPositionId(Integer positionId) {
+		this.positionId = positionId;
 	}
-	public String getEmpname() {
-		return empname;
+
+	public String getEmpName() {
+		return empName;
 	}
-	public void setEmpname(String empname) {
-		this.empname = empname;
+
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
+
 	public LocalDate getHiredate() {
 		return hiredate;
 	}
+
 	public void setHiredate(LocalDate hiredate) {
 		this.hiredate = hiredate;
 	}
-	public Boolean getEmpstate() {
-		return empstate;
+
+	public Boolean getEmpState() {
+		return empState;
 	}
-	public void setEmpstate(Boolean empstate) {
-		this.empstate = empstate;
+
+	public void setEmpState(Boolean empState) {
+		this.empState = empState;
 	}
-	public Integer getEmpaccount() {
-		return empaccount;
+
+	public Integer getEmpAccount() {
+		return empAccount;
 	}
-	public void setEmpaccount(Integer empaccount) {
-		this.empaccount = empaccount;
+
+	public void setEmpAccount(Integer empAccount) {
+		this.empAccount = empAccount;
 	}
-	public String getEmppassword() {
-		return emppassword;
+
+	public String getEmpPassword() {
+		return empPassword;
 	}
-	public void setEmppassword(String emppassword) {
-		this.emppassword = emppassword;
+
+	public void setEmpPassword(String empPassword) {
+		this.empPassword = empPassword;
 	}
+
 	public byte[] getImage() {
 		return image;
 	}
+
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	
-	
+
 	public EmpVO() {
 		super();
 	}
 	
-	public EmpVO(Integer empno, Integer positionid, String empname, LocalDate hiredate, Boolean empstate,
-			Integer empaccount, String emppassword, byte[] image) {
+	
+	
+	
+public EmpVO(Integer empno, Integer positionId, String empName, LocalDate hiredate, Boolean empState,
+			Integer empAccount, String empPassword, byte[] image) {
 		super();
 		this.empno = empno;
-		this.positionid = positionid;
-		this.empname = empname;
+		this.positionId = positionId;
+		this.empName = empName;
 		this.hiredate = hiredate;
-		this.empstate = empstate;
-		this.empaccount = empaccount;
-		this.emppassword = emppassword;
+		this.empState = empState;
+		this.empAccount = empAccount;
+		this.empPassword = empPassword;
 		this.image = image;
 	}
+
+//	public EmpVO(Integer empno, Integer positionid, String empname, LocalDate hiredate, Boolean empstate,
+//			Integer empaccount, String emppassword, byte[] image) {
+//		super();
+//		this.empno = empno;
+//		this.positionid = positionid;
+//		this.empname = empname;
+//		this.hiredate = hiredate;
+//		this.empstate = empstate;
+//		this.empaccount = empaccount;
+//		this.emppassword = emppassword;
+//		this.image = image;
+//	}
 	
 
 	
@@ -90,9 +123,9 @@ public class EmpVO {
 	public String toString() {
 	    // 注意安全风险，避免在生产环境中打印敏感信息如密码
 	    return String.format("EmpNo: %d, PositionID: %d, EmpName: %s, HireDate: %s, EmpState: %s, EmpAccount: %d, EmpPassword: %s",
-	        empno, positionid, empname, 
+	        empno, positionId, empName, 
 	        (hiredate != null) ? hiredate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "N/A", 
-	        empstate, empaccount, emppassword);
+	        empState, empAccount, empPassword);
 	}
  
    

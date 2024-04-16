@@ -30,16 +30,16 @@ public class EmpDAO implements EmpDAO_interface<EmpVO> {
 				// rs.getString(2) 是根據目前 SELECT 查詢中指定的欄位順序而取得對應的值，而不是直接對應到資料庫的欄位名稱。
 
 				Integer empno = rs.getInt(1);
-				Integer positionid = rs.getInt(2);
-				String empname = rs.getString(3);
+				Integer positionId = rs.getInt(2);
+				String empName = rs.getString(3);
 				LocalDate hiredate = rs.getObject(4, LocalDate.class); // LocalDate.class 為了確保從資料庫中擷取的日期值可以被正確轉換為 Java
 																		// 中的 LocalDate 物件。如果不指定類型，getObject 方法將返回一個通用的
 																		// Object
-				Boolean empstate = rs.getBoolean(5);
-				Integer empaccount = rs.getInt(6);
-				String emppassword = rs.getString(7);
+				Boolean empState = rs.getBoolean(5);
+				Integer empAccount = rs.getInt(6);
+				String empPassword = rs.getString(7);
 				byte[] image = rs.getBytes(8);
-				EmpVO empVO = new EmpVO(empno, positionid, empname, hiredate, empstate, empaccount, emppassword, image);
+				EmpVO empVO = new EmpVO(empno, positionId, empName, hiredate, empState, empAccount, empPassword, image);
 				employees.add(empVO);
 			}
 
@@ -61,14 +61,14 @@ public class EmpDAO implements EmpDAO_interface<EmpVO> {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Integer empno = rs.getInt(1);
-				Integer positionid = rs.getInt(2);
-				String empname = rs.getString(3);
+				Integer positionId = rs.getInt(2);
+				String empName = rs.getString(3);
 				LocalDate hiredate = rs.getObject(4, LocalDate.class);
-				Boolean empstate = rs.getBoolean(5);
-				Integer empaccount = rs.getInt(6);
-				String emppassword = rs.getString(7);
+				Boolean empState = rs.getBoolean(5);
+				Integer empAccount = rs.getInt(6);
+				String empPassword = rs.getString(7);
 				byte[] image = rs.getBytes(8);
-				empVO = new EmpVO(empno, positionid, empname, hiredate, empstate,empaccount,emppassword, image);
+				empVO = new EmpVO(empno, positionId, empName, hiredate, empState,empAccount,empPassword, image);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -83,12 +83,12 @@ public class EmpDAO implements EmpDAO_interface<EmpVO> {
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-			ps.setInt(1, empVO.getPositionid());
-			ps.setString(2, empVO.getEmpname());
+			ps.setInt(1, empVO.getPositionId());
+			ps.setString(2, empVO.getEmpName());
 			ps.setObject(3, empVO.getHiredate());
-			ps.setBoolean(4, empVO.getEmpstate());
+			ps.setBoolean(4, empVO.getEmpState());
 			ps.	setInt(5, 1);  //先隨便給一個數 在後面修正回來
-			ps.setString(6, empVO.getEmppassword());
+			ps.setString(6, empVO.getEmpPassword());
 			ps.setBytes(7, empVO.getImage());
 			ps.executeUpdate();
 
@@ -129,12 +129,12 @@ public class EmpDAO implements EmpDAO_interface<EmpVO> {
 				+ "WHERE `empno` = ?;";
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql)) {
-			ps.setInt(1, empVO.getPositionid());
-			ps.setString(2, empVO.getEmpname());
+			ps.setInt(1, empVO.getPositionId());
+			ps.setString(2, empVO.getEmpName());
 			ps.setObject(3, empVO.getHiredate());
-			ps.setBoolean(4, empVO.getEmpstate());
-			ps.setInt(5, empVO.getEmpaccount());
-			ps.setString(6, empVO.getEmppassword());
+			ps.setBoolean(4, empVO.getEmpState());
+			ps.setInt(5, empVO.getEmpAccount());
+			ps.setString(6, empVO.getEmpPassword());
 			ps.setBytes(7, empVO.getImage());
 			ps.setInt(8, empVO.getEmpno());
 			ps.executeUpdate();

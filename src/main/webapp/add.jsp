@@ -90,9 +90,9 @@
 <form action="EmpServlet1" method="post">
     <div class="form-header">新增員工</div>
     <div class="input-group">
-        <label for="positionid">* 職位:</label>
-        <select id="positionid" name="positionid">
-            <% int selectedPositionId = empVO != null ? empVO.getPositionid() : 4; %>
+        <label for="positionId">* 職位:</label>
+        <select id="positionId" name="positionId">
+            <% int selectedPositionId = empVO != null ? empVO.getPositionId() : 4; %>
             <option value="1"<%= selectedPositionId == 1 ? " selected" : "" %>>經理</option>
             <option value="2"<%= selectedPositionId == 2 ? " selected" : "" %>>客服人員</option>
             <option value="3"<%= selectedPositionId == 3 ? " selected" : "" %>>行銷人員</option>
@@ -105,8 +105,8 @@
     </div>
     
     <div class="input-group">
-        <label for="empname">* 員工姓名:</label>
-        <input type="text" id="empname" name="empname" value="<%= empVO != null ? empVO.getEmpname() : "" %>">
+        <label for="empName">* 員工姓名:</label>
+        <input type="text" id="empName" name="empName" value="<%= empVO != null ? empVO.getEmpName() : "" %>">
     </div>
     
     <div class="input-group">
@@ -115,16 +115,16 @@
     </div>
     
     <div class="input-group">
-        <label for="empstate">* 員工狀態:</label>
-        <select id="empstate" name="empstate">
-            <option value="true"<%= empVO != null && empVO.getEmpstate() ? " selected" : "" %>>在職</option>
-            <option value="false"<%= empVO != null && !empVO.getEmpstate() ? " selected" : "" %>>離職</option>
+        <label for="empState">* 員工狀態:</label>
+        <select id="empState" name="empState">
+            <option value="true"<%= empVO != null && empVO.getEmpState() ? " selected" : "" %>>在職</option>
+            <option value="false"<%= empVO != null && !empVO.getEmpState() ? " selected" : "" %>>離職</option>
         </select>
     </div>
     
     <div class="input-group">
-        <label for="emppassword">* 員工密碼:</label>
-        <input type="password" id="emppassword" name="emppassword" value="<%= empVO != null ? empVO.getEmppassword() : "" %>">
+        <label for="empPassword">* 員工密碼:</label>
+        <input type="password" id="empPassword" name="empPassword" value="<%= empVO != null ? empVO.getEmpPassword() : "" %>">
     </div>
     
     <div class="input-group">

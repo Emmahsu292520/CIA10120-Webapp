@@ -154,10 +154,10 @@ input[type="submit"]:hover {
 
 
 		<div class="input-group">
-			<label for="positionid">* 職位:</label> <select id="positionid"
-				name="positionid">
+			<label for="positionId">* 職位:</label> <select id="positionId"
+				name="positionId">
 				<%
-				int selectedPositionId = empVO != null ? empVO.getPositionid() : 4;
+				int selectedPositionId = empVO != null ? empVO.getPositionId() : 4;
 				%>
 				<option value="1" <%=selectedPositionId == 1 ? " selected" : ""%>>經理</option>
 				<option value="2" <%=selectedPositionId == 2 ? " selected" : ""%>>客服人員</option>
@@ -171,8 +171,8 @@ input[type="submit"]:hover {
 		</div>
 
 		<div class="input-group">
-			<label for="empname">* 員工姓名:</label> <input type="text" id="empname"
-				name="empname" value="<%=empVO != null ? empVO.getEmpname() : ""%>">
+			<label for="empName">* 員工姓名:</label> <input type="text" id="empName"
+				name="empName" value="<%=empVO != null ? empVO.getEmpName() : ""%>">
 		</div>
 
 		<div class="input-group">
@@ -182,24 +182,24 @@ input[type="submit"]:hover {
 		</div>
 
 		<div class="input-group">
-			<label for="empstate">* 員工狀態:</label> <select id="empstate"
-				name="empstate">
+			<label for="empState">* 員工狀態:</label> <select id="empState"
+				name="empState">
 				<option value="true"
-					<%=empVO != null && empVO.getEmpstate() ? " selected" : ""%>>在職</option>
+					<%=empVO != null && empVO.getEmpState() ? " selected" : ""%>>在職</option>
 				<option value="false"
-					<%=empVO != null && !empVO.getEmpstate() ? " selected" : ""%>>離職</option>
+					<%=empVO != null && !empVO.getEmpState() ? " selected" : ""%>>離職</option>
 			</select>
 		</div>
 
 		<div class="input-group">
-			<input type="text" id="empaccount" name="empaccount" value="<%=empVO != null && empVO.getEmpaccount() != null ? empVO.getEmpaccount() : ""%>">
+			<input type="text" id="empAccount" name="empAccount" value="<%=empVO != null && empVO.getEmpAccount() != null ? empVO.getEmpAccount() : ""%>">
 		</div>
 
 		<div class="input-group">
-			<label for="emppassword">* 員工密碼:</label>
+			<label for="empPassword">* 員工密碼:</label>
 			<div class="password-container">
-				<input type="password" id="emppassword" name="emppassword"
-					value="<%=empVO != null ? empVO.getEmppassword() : ""%>"> <i
+				<input type="password" id="empPassword" name="empPassword"
+					value="<%=empVO != null ? empVO.getEmpPassword() : ""%>"> <i
 					class="fa-solid fa-eye toggle-password"
 					onclick="togglePasswordVisibility()"></i>
 			</div>
@@ -217,7 +217,7 @@ input[type="submit"]:hover {
 
 	<script>
 		function togglePasswordVisibility() {
-			var passwordInput = document.getElementById("emppassword");
+			var passwordInput = document.getElementById("empPassword");
 			var icon = document.querySelector('.toggle-password');
 			var isPasswordVisible = passwordInput.type === 'password';
 

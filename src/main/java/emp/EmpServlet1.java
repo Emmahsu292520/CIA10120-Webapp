@@ -35,11 +35,11 @@ public class EmpServlet1 extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			/******** 1.接收請求參數-輸入格式錯誤處理 *********/
-			String empname = req.getParameter("empname");
-			String empnameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-			if (empname == null || empname.trim().length() == 0) {
+			String empName = req.getParameter("empName");
+			String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+			if (empName == null || empName.trim().length() == 0) {
 				errorMsgs.add("員工姓名:請勿空白");
-			} else if (!empname.trim().matches(empnameReg)) { // 以下練習正則(規)表示式(regular-expression)
+			} else if (!empName.trim().matches(empNameReg)) { // 以下練習正則(規)表示式(regular-expression)
 				errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 			}
 
@@ -60,26 +60,26 @@ public class EmpServlet1 extends HttpServlet {
 //                }
 //            }
 
-			String emppassword = req.getParameter("emppassword");
+			String empPassword = req.getParameter("empPassword");
 			String passwordReg = "^[a-zA-Z0-9_]{6,20}$"; // 密码只包含字母、数字和下划线，长度为6到20位
-			if (emppassword == null || emppassword.trim().isEmpty()) {
+			if (empPassword == null || empPassword.trim().isEmpty()) {
 				errorMsgs.add("員工密碼:請勿空白");
-			} else if (!emppassword.trim().matches(passwordReg)) {
+			} else if (!empPassword.trim().matches(passwordReg)) {
 				errorMsgs.add("員工密碼: 只能是字母、數字和_ , 且長度必需在6到20之間");
 			}
 
-			Integer positionId = Integer.parseInt(req.getParameter("positionid"));
-			Boolean empstate = Boolean.parseBoolean(req.getParameter("empstate"));
-			Integer empaccount = null;
+			Integer positionId = Integer.parseInt(req.getParameter("positionId"));
+			Boolean empState = Boolean.parseBoolean(req.getParameter("empState"));
+			Integer empAccount = null;
 			byte[] image = null;
 			// 新增
 
 			EmpVO empVO = new EmpVO();
-			empVO.setPositionid(positionId);
-			empVO.setEmpname(empname);
+			empVO.setPositionId(positionId);
+			empVO.setEmpName(empName);
 			empVO.setHiredate(hiredate);
-			empVO.setEmpstate(empstate);
-			empVO.setEmppassword(emppassword);
+			empVO.setEmpState(empState);
+			empVO.setEmpPassword(empPassword);
 			empVO.setImage(image);
 
 			if (!errorMsgs.isEmpty()) {
@@ -92,7 +92,7 @@ public class EmpServlet1 extends HttpServlet {
 
 			/*************************** 2.開始新增資料 ***************************************/
 			EmpService empSvc = new EmpService();
-			empVO = empSvc.addEmp(positionId, empname, hiredate, empstate, empaccount, emppassword, image);
+			empVO = empSvc.addEmp(positionId, empName, hiredate, empState, empAccount, empPassword, image);
 
 			System.out.println("新增成功");
 
@@ -131,11 +131,11 @@ public class EmpServlet1 extends HttpServlet {
 			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 			Integer empno = Integer.valueOf(req.getParameter("empno").trim());
 			
-			String empname = req.getParameter("empname");
-			String empnameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-			if (empname == null || empname.trim().length() == 0) {
+			String empName = req.getParameter("empName");
+			String empNameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+			if (empName == null || empName.trim().length() == 0) {
 				errorMsgs.add("員工姓名:請勿空白");
-			} else if (!empname.trim().matches(empnameReg)) { // 以下練習正則(規)表示式(regular-expression)
+			} else if (!empName.trim().matches(empNameReg)) { // 以下練習正則(規)表示式(regular-expression)
 				errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 			}
 
@@ -147,47 +147,47 @@ public class EmpServlet1 extends HttpServlet {
 				errorMsgs.add("請選擇日期!"); // 添加錯誤信息
 			}
 
-			String emppassword = req.getParameter("emppassword");
+			String empPassword = req.getParameter("empPassword");
 			String passwordReg = "^[a-zA-Z0-9_]{6,20}$"; // 密码只包含字母、数字和下划线，长度为6到20位
-			if (emppassword == null || emppassword.trim().isEmpty()) {
+			if (empPassword == null || empPassword.trim().isEmpty()) {
 				errorMsgs.add("員工密碼:請勿空白");
-			} else if (!emppassword.trim().matches(passwordReg)) {
+			} else if (!empPassword.trim().matches(passwordReg)) {
 				errorMsgs.add("員工密碼: 只能是字母、數字和_ , 且長度必需在6到20之間");
 			}
 			
 			
 			// 獲取員工賬號為字符串
-			String empaccountStr = req.getParameter("empaccount").trim();
-			if (empaccountStr == null || empaccountStr.isEmpty()) {
+			String empAccountStr = req.getParameter("empAccount").trim();
+			if (empAccountStr == null || empAccountStr.isEmpty()) {
 			    errorMsgs.add("員工賬號:請勿空白");
 			} else {
 			    // 檢查字符串是否只包含數字
-			    if (!empaccountStr.matches("^[0-9]+$")) {
+			    if (!empAccountStr.matches("^[0-9]+$")) {
 			        errorMsgs.add("員工賬號:只能輸入數字");
 			    }
 			}
 
 			// 然後，如果需要，您可以將字符串轉換為整數
-			Integer empaccount = null;
+			Integer empAccount = null;
 			try {
-				empaccount = Integer.valueOf(empaccountStr);
+				empAccount = Integer.valueOf(empAccountStr);
 			} catch (NumberFormatException e) {
 			    errorMsgs.add("員工賬號:格式錯誤");
 			}
 			
 
-			Integer positionId = Integer.parseInt(req.getParameter("positionid"));
-			Boolean empstate = Boolean.parseBoolean(req.getParameter("empstate"));
+			Integer positionId = Integer.parseInt(req.getParameter("positionId"));
+			Boolean empState = Boolean.parseBoolean(req.getParameter("empState"));
 			byte[] image = null;
 
 			EmpVO empVO = new EmpVO();
 			empVO.setEmpno(empno);
-			empVO.setPositionid(positionId);
-			empVO.setEmpname(empname);
+			empVO.setPositionId(positionId);
+			empVO.setEmpName(empName);
 			empVO.setHiredate(hiredate);
-			empVO.setEmpstate(empstate);
-			empVO.setEmpaccount(empaccount);
-			empVO.setEmppassword(emppassword);
+			empVO.setEmpState(empState);
+			empVO.setEmpAccount(empAccount);
+			empVO.setEmpPassword(empPassword);
 			empVO.setImage(image);
 			
 			if (!errorMsgs.isEmpty()) {
@@ -199,7 +199,7 @@ public class EmpServlet1 extends HttpServlet {
 			}
 			/***************************2.開始修改資料*****************************************/
 			EmpService empSvc = new EmpService();
-			empSvc.updateEmp( empno,positionId, empname, hiredate, empstate, empaccount, emppassword, image);
+			empSvc.updateEmp( empno,positionId, empName, hiredate, empState, empAccount, empPassword, image);
 			System.out.println("修改完成");
 			
 			/***************************3.修改完成,準備轉交(Send the Success view)*************/
@@ -250,13 +250,16 @@ public class EmpServlet1 extends HttpServlet {
 				errorMsgs.add("查無資料");
 			}
 		
+			System.out.println("測試點2");
+			
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/select_page.jsp");
+						.getRequestDispatcher("/selectpage1.jsp");
 				failureView.forward(req, res);
 				return;//程式中斷
 			}
 			
+			System.out.println("測試點3");
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 			req.setAttribute("empVO", empVO); // 資料庫取出的empVO物件,存入req
 			String url = "/listOneEmp.jsp";
