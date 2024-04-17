@@ -98,7 +98,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 			ps.setString(2, empVO.getEmpName());
 			ps.setObject(3, empVO.getHiredate());
 			ps.setBoolean(4, empVO.getEmpState());
-			ps.	setInt(5, 1);  //先隨便給一個數 在後面修正回來
+			ps.setInt(5, 1);  //先隨便給一個數 在後面修正回來
 			ps.setString(6, empVO.getEmpPassword());
 			ps.setBytes(7, empVO.getImage());
 			ps.executeUpdate();

@@ -142,7 +142,7 @@ input[type="submit"]:hover {
 
 
 
-	<form action="EmpServlet1" method="post">
+	<form action="EmpServlet1" method="post" enctype="multipart/form-data">
 		<div class="form-header">修改員工資料</div>
 
 		<div class="form-group">
@@ -192,6 +192,7 @@ input[type="submit"]:hover {
 		</div>
 
 		<div class="input-group">
+			<label for="empAccount">* 員工帳號:</label>
 			<input type="text" id="empAccount" name="empAccount" value="<%=empVO != null && empVO.getEmpAccount() != null ? empVO.getEmpAccount() : ""%>">
 		</div>
 

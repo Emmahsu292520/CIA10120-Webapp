@@ -134,7 +134,9 @@
             <td><%= emp.getEmpState() ? "在職" : "離職" %></td>
             <td><%= emp.getEmpAccount() %></td>
             <td><%= emp.getEmpPassword() %></td>
-            <td><img src="<%= emp.getImage() %>" alt="Employee Photo" width="100" height="100"></td>
+            <td><img src="Picture?empno=<%= emp.getEmpno() %>" alt="Employee Photo" width="100" height="100"></td>
+
+
         </tr>
         <% } %>
     </table>

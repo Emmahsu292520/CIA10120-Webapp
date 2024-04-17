@@ -130,7 +130,8 @@
       <td><%= empVO.getEmpState() ? "在職" : "離職" %></td>
       <td><%= empVO.getEmpAccount() %></td>
       <td><%= empVO.getEmpPassword() %></td>
-      <td><img src="<%= empVO.getImage() %>" alt="Employee Photo" width="100" height="100"></td>
+      <td><img src="Picture?empno=<%= empVO.getEmpno() %>" alt="Employee Photo" width="100" height="100"></td>
+
     </tr>
   </table>
 </form>
