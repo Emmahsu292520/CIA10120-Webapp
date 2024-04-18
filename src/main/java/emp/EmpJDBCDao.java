@@ -33,7 +33,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 	public List<EmpVO> getAll() {
 		EmpVO empVO = null;
 		List<EmpVO> employees = new ArrayList<>();
-		String sql = "SELECT `empno`,`positionid`,  `empname`, `hiredate`,`empstate`, `empaccount`, `emppassword`, `image` FROM `emp`;";
+		String sql = "SELECT `empno`,`position_id`,  `emp_name`, `hire_date`,`emp_state`, `emp_account`, `emp_password`, `image` FROM `emp`;";
 
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -64,7 +64,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 	@Override
 	public EmpVO findByPrimaryKey(Integer empnoId) {
 		EmpVO empVO = null;
-		String sql = "SELECT empno,positionid,empname,hiredate,empstate,empaccount,emppassword, image  FROM emp WHERE empno= ?;";
+		String sql = "SELECT empno,position_id,emp_name,hire_date,emp_state,emp_account,emp_password, image  FROM emp WHERE empno= ?;";
 
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -90,7 +90,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 	@Override
 	public void insert(EmpVO empVO) {
 
-		String sql = "INSERT INTO `emp` ( `positionid`,  `empname`, `hiredate`,`empstate`,`empaccount`, `emppassword`, `image`)VALUES( ?, ? ,?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO `emp` ( `position_id`,  `emp_name`, `hire_date`,`emp_state`,`emp_account`, `emp_password`, `image`)VALUES( ?, ? ,?, ?, ?, ?, ?);";
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -120,7 +120,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 
 	// 更新数据库中的 empaccount
 	private void updateEmpAccount(int empno) {
-	    String sql = "UPDATE `emp` SET `empaccount` = ? WHERE `empno` = ?";
+	    String sql = "UPDATE `emp` SET `emp_account` = ? WHERE `empno` = ?";
 	    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 	            PreparedStatement ps = connection.prepareStatement(sql)) {
 	        ps.setInt(1, empno);
@@ -136,7 +136,7 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 	@Override
 	public void update(EmpVO empVO) {
 		String sql = "UPDATE `emp` "
-				+ "SET `positionid` = ?,  `empname`= ? , `hiredate`= ?, `empstate` = ?, `empaccount`= ?, `emppassword`= ?, `image` = ? "
+				+ "SET `position_id` = ?,  `emp_name`= ? , `hire_date`= ?, `emp_state` = ?, `emp_account`= ?, `emp_password`= ?, `image` = ? "
 				+ "WHERE `empno` = ?;";
 		try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 				PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -210,13 +210,13 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 //		empVO2.setHiredate(LocalDate.of(2024, 1, 15));
 //		empVO2.setEmpState(false);
 //		empVO2.setEmpAccount(7050);
-//		empVO2.setEmpPassword("Password1234");
+//		empVO2.setEmpPassword("Password12345");
 //		try {
 //			empVO2.setImage(getPictureByteArray("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/images/11.jpg"));
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-//		empVO2.setEmpno(7009);
+//		empVO2.setEmpno(7010);
 //		dao.update(empVO2);
 //		System.out.println("修改成功");
 //		
@@ -231,11 +231,11 @@ public class EmpJDBCDao implements EmpDAO_interface<EmpVO>{
 //		System.out.println("---------------------");
 //		
 //		
-		// 查詢多筆
-		List<EmpVO> employees = dao.getAll();
-		for (EmpVO showAllEmployee : employees) {
-			System.out.println(showAllEmployee);
-		}
+//		// 查詢多筆
+//		List<EmpVO> employees = dao.getAll();
+//		for (EmpVO showAllEmployee : employees) {
+//			System.out.println(showAllEmployee);
+//		}
 	}
 
 }

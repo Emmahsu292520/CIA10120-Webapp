@@ -2,6 +2,24 @@
 <%@ page import="emp.*" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map, java.util.HashMap" %>
+
+<%!
+    // 在 JSP 頁面中建立職務映射的方法
+    public Map<Integer, String> getPositionMap() {
+        Map<Integer, String> positionMap = new HashMap<Integer, String>();
+        positionMap.put(1, "經理");
+        positionMap.put(2, "客服人員");
+        positionMap.put(3, "行銷人員");
+        positionMap.put(4, "房務員");
+        positionMap.put(5, "櫃台接待人員");
+        positionMap.put(6, "活動人員");
+        positionMap.put(7, "會議廳人員");
+        positionMap.put(8, "餐廳人員");
+        return positionMap;
+    }
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,13 +140,14 @@
             <th>員工照片</th>
         </tr>
         <% 
+        Map<Integer, String> positionMap = getPositionMap();
         EmpService empService = new EmpService();
         List<EmpVO> empList = empService.getAll();
         for (EmpVO emp : empList) { %>
         <tr>
             <td><input type="radio" name="selectedEmp" value="<%= emp.getEmpno() %>"></td>
             <td><%= emp.getEmpno() %></td>
-            <td><%= emp.getPositionId() %></td>
+            <td><%= positionMap.get(emp.getPositionId()) %></td>  <!-- 使用映射顯示職位名稱 -->
             <td><%= emp.getEmpName() %></td>
             <td><%= emp.getHiredate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) %></td>
             <td><%= emp.getEmpState() ? "在職" : "離職" %></td>
